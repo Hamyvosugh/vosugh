@@ -1,7 +1,7 @@
 // components/sections /Services.tsx 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, JSX } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText, Code, Database, ArrowRight, Calendar, Mail, Instagram, 
          Monitor, ShoppingCart, Search, RefreshCw, Zap, Users, BarChart, Link, Settings } from 'lucide-react';
