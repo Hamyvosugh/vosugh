@@ -2,10 +2,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['placehold.co'], // Add any image domains you'll use
+  experimental: {
+    appDir: true,
   },
-  // If you need to handle SVGs as components
+  images: {
+    domains: ['placehold.co'],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
