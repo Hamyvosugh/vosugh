@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Newsletter 2025</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #4a5568);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .header p {
+            margin: 10px 0 0;
+            font-size: 16px;
+        }
+        
+        /* Content Blocks */
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #2c3e50;
+            font-weight: 600;
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        
+        .feature-box {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            background-color: #e6f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            color: #0078d4;
+            font-size: 24px;
+        }
+        
+        .feature-content {
+            flex-grow: 1;
+        }
+        
+        .feature-content h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        
+        .feature-content p {
+            margin: 0;
+            color: #555;
+        }
+        
+        /* Call to Action */
+        .cta-section {
+            background-color: #f4f9ff;
+            padding: 30px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .cta-section h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 24px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, #0078d4, #00a0dc);
+            color: white;
+            text-decoration: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 120, 212, 0.2);
+        }
+        
+        /* Stats Section */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-box {
+            flex-basis: 30%;
+            text-align: center;
+            padding: 20px 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0078d4;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Testimonial */
+        .testimonial {
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-left: 4px solid #0078d4;
+            margin-bottom: 30px;
+            position: relative;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin: 0 0 15px 0;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .testimonial-position {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #f0f4f8;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background-color: #e1e8ed;
+            border-radius: 50%;
+            margin: 0 5px;
+            color: #536471;
+            text-decoration: none;
+            line-height: 36px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #0078d4;
+            color: white;
+        }
+        
+        .footer-links {
+            margin: 15px 0;
+        }
+        
+        .footer-links a {
+            color: #536471;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: #0078d4;
+        }
+        
+        .footer-text {
+            color: #6e7b85;
+            font-size: 14px;
+            margin: 15px 0 0;
+        }
+        
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .header, .content, .footer {
+                padding: 20px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+            }
+            
+            .stat-box {
+                flex-basis: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .feature-box {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo">LOGO</div>
+            <h1>Innovationen für Ihr Unternehmen</h1>
+            <p>Neue Strategien und Lösungen für 2025</p>
+        </div>
+        
+        <!-- Main Content Section -->
+        <div class="content">
+            <!-- Welcome Section -->
+            <div class="section">
+                <h2 class="section-title">Willkommen beim Business Update</h2>
+                <p>Sehr geehrte Geschäftspartner,</p>
+                <p>wir freuen uns, Ihnen unsere neuesten Innovationen und Dienstleistungen vorstellen zu können, die Ihr Unternehmen im Jahr 2025 auf die nächste Stufe bringen werden. Unsere maßgeschneiderten Lösungen sind darauf ausgerichtet, Ihre Geschäftsprozesse zu optimieren und nachhaltige Erfolge zu erzielen.</p>
+            </div>
+            
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <h2>Sichern Sie sich jetzt Ihren Wettbewerbsvorteil</h2>
+                <p>Vereinbaren Sie eine kostenlose Beratung mit unseren Experten und entdecken Sie, wie unsere Lösungen Ihr Unternehmen transformieren können.</p>
+                <a href="#" class="cta-button">Termin vereinbaren</a>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="section">
+                <h2 class="section-title">Unsere Kernkompetenzen</h2>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">★</div>
+                    <div class="feature-content">
+                        <h3>KI-gestützte Analysen</h3>
+                        <p>Nutzen Sie die Kraft der künstlichen Intelligenz, um Geschäftsentscheidungen auf Basis präziser Datenanalysen zu treffen und Markttrends vorherzusagen.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-content">
+                        <h3>Prozessautomatisierung</h3>
+                        <p>Steigern Sie Ihre Effizienz durch intelligente Automatisierungslösungen, die repetitive Aufgaben übernehmen und Ihre Ressourcen optimal einsetzen.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-content">
+                        <h3>Cybersicherheit 2025</h3>
+                        <p>Schützen Sie Ihre wertvollen Unternehmensdaten mit unseren fortschrittlichen Sicherheitslösungen, die den neuesten Bedrohungen einen Schritt voraus sind.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="section">
+                <h2 class="section-title">Unsere Erfolge sprechen für sich</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Kundenzufriedenheit</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-number">+40%</div>
+                        <div class="stat-label">Effizienzsteigerung</div>
+                    </div>
+                    
+                    <div class="stat-box">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Erfolgreiche Projekte</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial Section -->
+            <div class="section">
+                <h2 class="section-title">Das sagen unsere Kunden</h2>
+                
+                <div class="testimonial">
+                    <p>"Die Zusammenarbeit hat unser Unternehmen revolutioniert. Seit der Implementierung ihrer Lösungen konnten wir unsere Produktivität um 35% steigern und gleichzeitig unsere Betriebskosten senken."</p>
+                    <div class="testimonial-author">Dr. Thomas Schmidt</div>
+                    <div class="testimonial-position">Geschäftsführer, TechSolutions GmbH</div>
+                </div>
+            </div>
+            
+            <!-- Final CTA -->
+            <div class="section">
+                <p>Möchten Sie mehr über unsere Dienstleistungen erfahren? Unser Team steht Ihnen gerne zur Verfügung, um Ihre individuellen Anforderungen zu besprechen.</p>
+                <p>Mit freundlichen Grüßen,<br>Ihr Business-Team</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">t</a>
+                <a href="#" class="social-link">ig</a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+                <a href="#">Kontakt</a>
+                <a href="#">Abmelden</a>
+            </div>
+            
+            <p class="footer-text">© 2025 Ihr Unternehmen GmbH. Alle Rechte vorbehalten.</p>
+            <p class="footer-text">Musterstraße 123, 10115 Berlin, Deutschland</p>
+        </div>
+    </div>
+</body>
+</html>

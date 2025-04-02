@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihr Warenkorb wartet auf Sie!</title>
+    <style>
+        /* Globale Stile */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 0;
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .header {
+            padding: 0;
+            position: relative;
+        }
+        
+        .header-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ff6b6b, #ff9999);
+            object-fit: cover;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 30px;
+        }
+        
+        .header-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 10px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-container {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+        
+        .logo {
+            height: 40px;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Badge */
+        .offer-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #FFD700;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+        
+        /* Main Content */
+        .content {
+            padding: 30px;
+        }
+        
+        .intro {
+            margin-bottom: 30px;
+        }
+        
+        .intro p {
+            margin: 0 0 15px;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        /* Timer */
+        .timer-container {
+            background-color: #f8f4ff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-left: 4px solid #6b46c1;
+        }
+        
+        .timer-title {
+            font-size: 16px;
+            color: #6b46c1;
+            margin: 0 0 15px;
+            font-weight: 600;
+        }
+        
+        .timer-units {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .timer-unit {
+            position: relative;
+            width: 60px;
+        }
+        
+        .timer-number {
+            background-color: #6b46c1;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            height: 50px;
+            width: 60px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            box-shadow: 0 3px 6px rgba(107, 70, 193, 0.2);
+        }
+        
+        .timer-label {
+            font-size: 12px;
+            color: #6b46c1;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        /* Cart Items */
+        .cart-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-items {
+            margin-bottom: 30px;
+        }
+        
+        .cart-item {
+            display: flex;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .cart-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .item-image {
+            flex: 0 0 120px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        
+        .item-details {
+            flex: 1;
+            padding: 15px;
+        }
+        
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 5px;
+            color: #333;
+        }
+        
+        .item-description {
+            font-size: 14px;
+            color: #666;
+            margin: 0 0 10px;
+        }
+        
+        .item-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-right: 8px;
+            font-weight: 400;
+        }
+        
+        /* Total Section */
+        .cart-summary {
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-row.total {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .summary-label {
+            color: #666;
+        }
+        
+        .summary-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .discount {
+            color: #FF6B6B;
+        }
+        
+        /* CTA Buttons */
+        .cta-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .primary-button {
+            display: inline-block;
+            background-color: #6b46c1;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-bottom: 15px;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 3px 6px rgba(107, 70, 193, 0.2);
+        }
+        
+        .primary-button:hover {
+            background-color: #5a3aa6;
+        }
+        
+        .secondary-link {
+            color: #666;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+        
+        /* Extra incentives */
+        .incentives {
+            margin: 30px 0;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .incentive {
+            flex: 1 0 calc(50% - 15px);
+            min-width: 200px;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+        }
+        
+        .incentive-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 20px;
+            color: #6b46c1;
+            flex-shrink: 0;
+        }
+        
+        .incentive-text {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .incentive-text strong {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        /* Customer Reviews */
+        .review {
+            border-left: 3px solid #6b46c1;
+            padding: 15px;
+            background-color: #f8f4ff;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+        }
+        
+        .review-text {
+            font-style: italic;
+            margin: 0 0 10px;
+            color: #555;
+        }
+        
+        .reviewer {
+            display: flex;
+            align-items: center;
+        }
+        
+        .reviewer-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .stars {
+            margin-left: 10px;
+            color: #FFD700;
+            letter-spacing: 2px;
+        }
+        
+        /* Help Section */
+        .help-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .help-section p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #f8f4ff;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #6b46c1;
+            color: white;
+            text-align: center;
+            line-height: 36px;
+            margin: 0 5px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+        
+        .social-link:hover {
+            background-color: #5a3aa6;
+        }
+        
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #6b46c1;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-text {
+            color: #888;
+            font-size: 12px;
+            margin: 0;
+        }
+        
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .timer-units {
+                gap: 10px;
+            }
+            
+            .timer-number {
+                width: 50px;
+                height: 40px;
+                font-size: 20px;
+            }
+            
+            .timer-unit {
+                width: 50px;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+            }
+            
+            .item-image {
+                flex: 0 0 120px;
+                width: 100%;
+                height: 120px;
+            }
+            
+            .incentives {
+                flex-direction: column;
+            }
+            
+            .incentive {
+                flex: 1 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo">LOGO</div>
+            </div>
+            <div class="offer-badge">15% RABATT</div>
+            <div class="header-image">
+                <div class="header-overlay">
+                    <h1 class="header-title">Ihr Warenkorb vermisst Sie!</h1>
+                    <p class="header-subtitle">Die Produkte, die Sie ausgewählt haben, warten auf Sie.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content">
+            <div class="intro">
+                <p>Hallo Max,</p>
+                <p>wir haben bemerkt, dass Sie kürzlich Produkte zu Ihrem Warenkorb hinzugefügt haben, aber Ihren Einkauf nicht abgeschlossen haben. Gute Neuigkeiten: Ihre ausgewählten Artikel sind noch verfügbar, und wir haben sogar einen <strong>speziellen Rabatt von 15%</strong> für Sie reserviert!</p>
+            </div>
+            
+            <!-- Timer -->
+            <div class="timer-container">
+                <h3 class="timer-title">Dieses Angebot endet in:</h3>
+                <div class="timer-units">
+                    <div class="timer-unit">
+                        <div class="timer-number">23</div>
+                        <div class="timer-label">Stunden</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-number">59</div>
+                        <div class="timer-label">Minuten</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-number">59</div>
+                        <div class="timer-label">Sekunden</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cart Items -->
+            <h2 class="cart-title">Ihre ausgewählten Produkte</h2>
+            <div class="cart-items">
+                <div class="cart-item">
+                    <div class="item-image">Bild</div>
+                    <div class="item-details">
+                        <h3 class="item-name">Premium Kopfhörer X3</h3>
+                        <p class="item-description">Kabellose Over-Ear-Kopfhörer mit aktiver Geräuschunterdrückung</p>
+                        <div class="item-price">
+                            <span class="original-price">€199,95</span>
+                            <span>€169,96</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="cart-item">
+                    <div class="item-image">Bild</div>
+                    <div class="item-details">
+                        <h3 class="item-name">Bluetooth Lautsprecher Mini</h3>
+                        <p class="item-description">Tragbarer wasserdichter Lautsprecher mit 12 Stunden Akkulaufzeit</p>
+                        <div class="item-price">
+                            <span class="original-price">€89,95</span>
+                            <span>€76,46</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <div class="summary-label">Zwischensumme</div>
+                    <div class="summary-value">€289,90</div>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-label">Rabatt (15%)</div>
+                    <div class="summary-value discount">-€43,49</div>
+                </div>
+                <div class="summary-row">
+                    <div class="summary-label">Versand</div>
+                    <div class="summary-value">KOSTENLOS</div>
+                </div>
+                <div class="summary-row total">
+                    <div class="summary-label">Gesamtsumme</div>
+                    <div class="summary-value">€246,41</div>
+                </div>
+            </div>
+            
+            <!-- CTA -->
+            <div class="cta-container">
+                <a href="#" class="primary-button">JETZT ZUM WARENKORB</a>
+                <br>
+                <a href="#" class="secondary-link">Brauchst du Hilfe bei deiner Bestellung?</a>
+            </div>
+            
+            <!-- Extra Incentives -->
+            <div class="incentives">
+                <div class="incentive">
+                    <div class="incentive-icon">🚚</div>
+                    <div class="incentive-text">
+                        <strong>Kostenloser Versand</strong>
+                        Für alle Bestellungen über €50
+                    </div>
+                </div>
+                
+                <div class="incentive">
+                    <div class="incentive-icon">↩️</div>
+                    <div class="incentive-text">
+                        <strong>100 Tage Rückgaberecht</strong>
+                        Problemlose Rücksendung
+                    </div>
+                </div>
+                
+                <div class="incentive">
+                    <div class="incentive-icon">🛡️</div>
+                    <div class="incentive-text">
+                        <strong>2 Jahre Garantie</strong>
+                        Auf alle elektronischen Geräte
+                    </div>
+                </div>
+                
+                <div class="incentive">
+                    <div class="incentive-icon">💬</div>
+                    <div class="incentive-text">
+                        <strong>24/7 Kundensupport</strong>
+                        Wir sind immer für Sie da
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Customer Review -->
+            <div class="review">
+                <p class="review-text">"Die Kopfhörer X3 sind einfach fantastisch! Der Sound ist kristallklar und die Geräuschunterdrückung ist besser als bei allen anderen Kopfhörern, die ich je hatte."</p>
+                <div class="reviewer">
+                    <div class="reviewer-image">L</div>
+                    <div class="reviewer-name">Lisa M.</div>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+            
+            <!-- Help Section -->
+            <div class="help-section">
+                <p>Falls Sie Fragen haben oder Hilfe benötigen, zögern Sie nicht, uns zu kontaktieren. Unser freundliches Kundenservice-Team steht Ihnen gerne zur Verfügung.</p>
+                <p>Mit freundlichen Grüßen,<br>Ihr Online-Shop-Team</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link">f</a>
+                <a href="#" class="social-link">in</a>
+                <a href="#" class="social-link">ig</a>
+                <a href="#" class="social-link">t</a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+                <a href="#">AGB</a>
+                <a href="#">Abmelden</a>
+            </div>
+            
+            <p class="footer-text">© 2025 Online Shop GmbH. Alle Rechte vorbehalten.</p>
+            <p class="footer-text">Diese E-Mail wurde an max.mustermann@example.com gesendet.</p>
+            <p class="footer-text">Sie können Ihre E-Mail-Präferenzen jederzeit aktualisieren oder sich abmelden.</p>
+        </div>
+    </div>
+</body>
+</html>
